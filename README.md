@@ -53,16 +53,18 @@ DOWNLOAD_FOLDER=downloads
 
 ### Grundlæggende kørsel
 ```bash
-python rapport_FINAL_v21.py
+python rapport_FINAL_v24.py
 ```
 
 ### Inputfiler
-- **Excel-fil**: `faktura_list.xlsx` med kolonner:
-  - `faktura nr` - Unik fakturaidentifikator
-  - `kunde nr` - Kundenummer
-  - `faktura dato` - Dato på fakturaen
-  - `moms` - Moms-beløb
-  - `i alt` - Totalt beløb
+- **Excel-fil (v24)**: `invoice_extract_prod.xlsx` i den konfigurerede `BATCH_FOLDER` med AutoCore-kolonner:
+  - `INVOICENO` → `faktura nr` - Unik fakturaidentifikator
+  - `KUNNUM` → `kunde nr` - Kundenummer
+  - `FAKTURADATO` → `faktura dato` - Dato på fakturaen
+  - `MOMS_BELØB_ENDLIG` → `moms` - Moms-beløb
+  - `FAKBLØ` → `i alt` - Totalt beløb
+
+v24 normaliserer og omdøber kolonnerne ved indlæsning, før dublet-rensning og sammenligning. Resten af behandlingen er uændret fra v23.
 
 ### Output
 - **Excel-rapport**: `sammenligningsrapport_finance.xlsx`
