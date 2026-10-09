@@ -53,7 +53,7 @@ DOWNLOAD_FOLDER=downloads
 
 ### Grundlæggende kørsel
 ```bash
-python rapport_FINAL_v21.py
+python rapport_FINAL_v24.py
 ```
 
 ### Inputfiler
@@ -63,6 +63,24 @@ python rapport_FINAL_v21.py
   - `faktura dato` - Dato på fakturaen
   - `moms` - Moms-beløb
   - `i alt` - Totalt beløb
+
+v24 understøtter også Autocore-eksportens kolonnenavne automatisk:
+
+| Autocore-kolonne | Internt kolonnenavn |
+|-----------------|--------------------|
+| `compositeinvoicenumber` | `faktura nr` |
+| `kunnum` | `kunde nr` |
+| `fakturadato` | `faktura dato` |
+| `moms_beløb_endlig` | `moms` |
+| `fakblø` | `i alt` |
+
+Eksisterende interne kolonner bevares og har forrang. Kolonnenavne normaliseres
+til små bogstaver uden indledende/afsluttende mellemrum. Hver omdøbning logges,
+og alle fem påkrævede kolonner valideres før dublet-håndtering.
+Yderligere eksportvarianter kan tilføjes i `column_mapping` i v24.
+
+**Bemærk:** Mappingen af `fakblø` til `i alt` forudsætter, at beløbet er inklusive
+moms. Bekræft dette i Autocore-udtrækket før sammenligning; v24 tillægger ikke moms.
 
 ### Output
 - **Excel-rapport**: `sammenligningsrapport_finance.xlsx`
@@ -159,6 +177,9 @@ Total fakturaer i Excel:           474
 
 **Problem**: Moms ekstraheres ikke fra nogle PDF'er
 - **Løsning**: PDF'en kan have et uventet format. Se `rapport_log_*.txt` for detaljer
+
+**Problem**: "Excel mangler kolonner" fejl
+- **Løsning**: Fejlen viser både manglende og påkrævede kolonner. Tjek Autocore-eksportformatet og kolonnenavnene mod tabellen ovenfor.
 
 ## Udvikling
 
