@@ -34,8 +34,8 @@ ACCOUNT_NAME       = os.getenv("AZURE_STORAGE_ACCOUNT_NAME")
 SAS_TOKEN          = os.getenv("AZURE_SAS_TOKEN")
 BLOB_PREFIX        = ""
 BATCH_FOLDER       = "Batch1"
-LOCAL_PDF_DIR      = os.path.join(BATCH_FOLDER, "downloaded_pdfs")
-EXCEL_PATH         = os.path.join(BATCH_FOLDER, "faktura_list.xlsx")
+LOCAL_PDF_DIR      = BATCH_FOLDER  # PDFs stored directly in Batch1
+EXCEL_PATH         = os.path.join(BATCH_FOLDER, "invoice_extract_prod.xlsx")
 RESULT_PATH        = os.path.join(BATCH_FOLDER, "sammenligningsrapport_finance.xlsx")
 FAKTURA_NR_FIELD   = "faktura nr"
 EKSTRA_FAKTURA_DIR = r"C:\Users\mojoh\OneDrive - Semler Gruppen A S\Dokumenter\hist faktura\00032"
@@ -443,7 +443,7 @@ for _, row in df.iterrows():
 pdf_data = {}
 manglende_pdf = []; manglende_dato = []; manglende_ialt = []; manglende_moms = []
 antal_kreditnotaer = 0
-alle_filer = os.listdir(LOCAL_PDF_DIR)
+alle_filer = [f for f in os.listdir(LOCAL_PDF_DIR) if f.lower().endswith('.pdf')]
 
 for idx, faktura_nr in enumerate(faktura_nrs):
     filnavn = None
