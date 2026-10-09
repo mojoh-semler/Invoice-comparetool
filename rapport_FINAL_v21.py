@@ -33,9 +33,10 @@ load_dotenv()
 ACCOUNT_NAME       = os.getenv("AZURE_STORAGE_ACCOUNT_NAME")
 SAS_TOKEN          = os.getenv("AZURE_SAS_TOKEN")
 BLOB_PREFIX        = ""
-LOCAL_PDF_DIR      = "downloaded_pdfs"
-EXCEL_PATH         = "faktura_list.xlsx"
-RESULT_PATH        = "sammenligningsrapport_finance.xlsx"
+BATCH_FOLDER       = "Batch1"
+LOCAL_PDF_DIR      = os.path.join(BATCH_FOLDER, "downloaded_pdfs")
+EXCEL_PATH         = os.path.join(BATCH_FOLDER, "faktura_list.xlsx")
+RESULT_PATH        = os.path.join(BATCH_FOLDER, "sammenligningsrapport_finance.xlsx")
 FAKTURA_NR_FIELD   = "faktura nr"
 EKSTRA_FAKTURA_DIR = r"C:\Users\mojoh\OneDrive - Semler Gruppen A S\Dokumenter\hist faktura\00032"
 
