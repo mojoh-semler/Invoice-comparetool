@@ -53,11 +53,13 @@ DOWNLOAD_FOLDER=downloads
 
 ### Grundlæggende kørsel
 ```bash
-python rapport_FINAL_v21.py
+python rapport_FINAL_v25.py
 ```
 
+Kør scriptet fra samme miljø og med den eksisterende `.env`-konfiguration for Azure. Brug de input- og outputplaceringer, der allerede er angivet øverst i scriptet.
+
 ### Inputfiler
-- **Excel-fil**: `faktura_list.xlsx` med kolonner:
+- **Excel-fil**: `invoice_extract_prod.xlsx` i den konfigurerede `BATCH_FOLDER`, med kolonner:
   - `faktura nr` - Unik fakturaidentifikator
   - `kunde nr` - Kundenummer
   - `faktura dato` - Dato på fakturaen
@@ -104,7 +106,7 @@ Konverterer danske talformater automatisk:
 - `1234,56` → `1234.56`
 
 ### Kreditnota-detektion
-Detekterer automatisk kreditnotaer og negerer beløb hvis nødvendigt.
+Detekterer automatisk kreditnotaer. Kreditnotaens PDF-moms sammenlignes som et positivt beløb med momsbeløbet i Excel, mens kreditnotaens PDF-total (`i alt`) fortsat håndteres som negativ.
 
 ### Dublet-håndtering
 Fjerner dubletter baseret på fakturanummer, bevarer rækker med mest data.
@@ -123,7 +125,7 @@ Se `rapport_log_*.txt` for detaljer.
 ## Arkitektur
 
 ```
-rapport_FINAL_v21.py
+rapport_FINAL_v25.py
 ├── Azure Blob Storage (Download PDFer)
 ├── Local PDF Directory (Parsing)
 ├── Excel Reader (Input)
